@@ -1,5 +1,8 @@
 /*COLLEGARE IL PIN 3V3 DI ARDUINO CON IL SUO PIN AREF!!! (analog
 reference)*/
+
+/*connect the pin area to the 3V3 in your board*/
+
 #include <DHT.h>
 #include <DHT_U.h>
 #include <LiquidCrystal_I2C.h>
@@ -26,11 +29,11 @@ unsigned long t2, dt2;
 unsigned long t3, dt3;
 unsigned long t4, dt4;
 
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+LiquidCrystal_I2C lcd(0x27, 16, 2); // found your I²C address using an I²C scanner
 DHT dht(2, DHT11);
 
 void setup() {
-  analogReference(AR_EXTERNAL);
+  analogReference(AR_EXTERNAL); //if you're not using an Arduino r4 wifi use (EXTERNAL) without "AR"
   lcd.init();
   lcd.backlight();
   dht.begin();
